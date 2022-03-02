@@ -31,9 +31,10 @@
     </label><br>
     <label>Date of Departure:
       <input type="datetime-local" 
-      name="departs"
-      value="2022-03-01T20:30"
-      min="2022-03-01T00:00" max="2023-03-01T00:00">
+      name="departs">
+    </label><br>
+    <label>Tickets:
+      <input name="seat" required pattern="[A-F][1-9]\d?">
     </label><br>
     <button type="submit">Add Flight</button>
   </form>
