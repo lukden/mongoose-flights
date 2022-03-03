@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/stylesheets/style.css">
-  <title><%= title %></title>
-</head>
-<body>
+<%- include('./partials/html-head') %>
+<%- include('./partials/nav') %>
+
+<main>
   <h1><%= title %></h1>
-  <a href="/flights/new" method="GET">Track a flight!</a>
-  <a href="/flights" method = "GET">Display All Flights</a>
-</body>
-</html>
+  <a href="/flights/new">Add a Flight!</a>
+  <a href="/flights">Show me all the flights!</a>
+</main>
+
+<%- include("./partials/footer") %>
