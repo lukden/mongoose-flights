@@ -21,6 +21,8 @@ router.put("/:id", flightsCtrl.update)
 
 router.post('/:id/tickets', flightsCtrl.createTicket)
 
+router.post('/:id/meals', flightsCtrl.addToMenu);
+
 
 
 export {

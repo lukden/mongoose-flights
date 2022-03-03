@@ -4,10 +4,12 @@
 
 <main>
   <h1><%= title %></h1>
-  <section>
+  <div>
     <a href="/flights/<%= flight._id %>/edit">
       <button>Edit Flight</button>
     </a>
+  </div>
+  <section>
     <div>Airline: </div>
     <div><%= flight.airline %></div>
     <div>Airport: </div>
@@ -16,9 +18,24 @@
     <div><%= flight.flightNo %></div>
     <div>Departure Time: </div>
     <div><%= flight.departs %></div>
-    <div>Tickets: </div>
-    <div><%= flight.tickets %></div>
-    </a>
+    <div>Meals:</div>
+    <ul id="meals"> 
+      <% flight.meals.forEach(meal => { %>
+        <li><%= meal.name %></li>
+      <% }) %>
+    </ul>
+  </section>
+
+  <form action="/flights/<%= flight._id %>/meals" method="POST" id="meals">
+    <select name="mealId">
+      <% meals.forEach(meal => { %> 
+        <option value="<%= meal._id %>"><%= meal.name %> 
+        </option>        
+      <% }) %>
+    </select>
+    <button type="submit">Add to Meal</button>
+    </form>
+
   </section>
   <h2>Tickets</h2>
   <form 
@@ -26,10 +43,10 @@
     action="/flights/<%= flight._id %>/tickets"
     method="POST"
   >
-    <label for="seat-select">Seat:</label>
+    <label for="seat">Seat:</label>
     <input name="seat" required pattern="[A-F][1-9]\d?" placeholder="A1 through F9">
-    <label for="price-select">Price:</label>
-    <input name="price" required min="0" >
+    <label for="price">Price:</label>
+    <input type="number" name="price" min="0" >
     <button type="submit">Add Ticket</button>
   </form>
   <% if (flight.tickets.length) { %>
@@ -43,7 +60,6 @@
       <tbody>
         <% flight.tickets.forEach(function(ticket) { %>
           <tr>
-            <td><%= ticket.createdAt.toLocaleDateString() %></td>
             <td><%= ticket.seat %></td>
             <td><%= ticket.price %></td>
           </tr>
